@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="quotes"></div>
+    <div id="author"></div>
+        <button>
+            new quotes
+        </button>
+    
+    <script>
+        
+        const quotes = document.getElementById("quotes");
+        const author = document.getElementById("author");
+        let realData = "";
+        
+        const getNewQuotes = () => {
+            // console.log("hello")
+            let rnum = Math.floor(Math.random() * 10);
+            console.log(rnum)
+            // console.log(realData[rnum].text)
+            quotes.innerText = `${realData[rnum].text}`;
+            // quotes.innerText = "hello"
+
+            author.innerText = `${realData[rnum].author}`;
+            
+        };
+        
+        const getQuotes = async () => {
+            const api = "https://type.fit/api/quotes";
+            try
+            {
+                let data = await fetch(api);
+                let realData = await data.json();
+                // to get quotes randomly
+                
+                console.log(realData[1].text);
+                console.log(realData[100].author);
+                getNewQuotes();
+            }
+            catch(error)
+            {
+
+            }
+        }
+        
+        getQuotes();
+    </script>
+</body>
+</html>
